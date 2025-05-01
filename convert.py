@@ -14,7 +14,7 @@ def has_audio_stream(input_path: str) -> bool:
             return True
     return False
 
-def webm_to_mp3(input_path: str, output_path: str, bitrate: str = "10000k"):
+def some_to_mp3(input_path: str, output_path: str, bitrate: str = "10000k"):
     if not has_audio_stream(input_path):
         raise RuntimeError(f"No audio stream found in {input_path}")
     cmd = [
@@ -27,9 +27,9 @@ def webm_to_mp3(input_path: str, output_path: str, bitrate: str = "10000k"):
     ]
     subprocess.run(cmd, check=True)
 
-def webm_to_wav(input_path: str, output_path: str, sample_rate: int = 100000):
+def some_to_wav(input_path: str, output_path: str, sample_rate: int = 100000):
     """
-    .webm → .wav 変換を実行する。
+    .??? → .wav 変換を実行する。
 
     :param input_path: 入力の .webm ファイルパス
     :param output_path: 出力の .wav ファイルパス
@@ -49,4 +49,4 @@ def webm_to_wav(input_path: str, output_path: str, sample_rate: int = 100000):
     subprocess.run(cmd, check=True)
 
 if __name__ == "__main__":
-    webm_to_wav("international_II_6.mp4", "inter_6.wav")
+    some_to_wav("international_II_6.mp4", "inter_6.wav")
