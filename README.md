@@ -48,6 +48,8 @@ cmake --build build --config Release
 
 動画 / 音声ファイルを配置し、各ファイルの`if __name__ == "__main__":`以下の関数に適切なファイル名・パスを記入
 
+whis_cmd.pyを参考にwhis_cmd.shの引数を調整
+
 ```
 python convert.py # ファイルが音声ファイルでない時実行
 python slow.py # 音声ファイルが早送りの時実行
