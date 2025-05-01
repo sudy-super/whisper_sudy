@@ -1,0 +1,72 @@
+最新情報は`./whisper.cpp/build/bin/whisper-cli -h`で確認
+
+1. 並列処理
+オプション	デフォルト	説明
+-t, --threads N	4	推論に使用するスレッド数
+-p, --processors N	1	推論に使用するプロセッサ数
+
+2. オフセット／クリップ制御
+オプション	デフォルト	説明
+-ot, --offset-t N	0	入力音声処理開始オフセット（ミリ秒）
+-on, --offset-n N	0	セグメント処理開始オフセット（インデックス単位）
+-d, --duration N	0	処理する音声長さ（ミリ秒）
+--clip-timestamps start,end…	0	カンマ区切り秒数で指定した範囲のみ処理（例: 0,10000,20000,30000）
+
+3. デコーディング／フォールバック
+オプション	デフォルト	説明
+-bo, --best-of N	5	非ゼロ温度時に保持するサンプリング候補数
+-bs, --beam-size N	5	ビームサーチ幅
+-tp, --temperature N	0.00	サンプリング温度（0はビームサーチ）
+-tpi, --temperature-inc N	0.20	フォールバック時に温度を増加させる量
+-et, --entropy-thold N	2.40	デコーダ失敗とみなすエントロピー閾値
+-lpt, --logprob-thold N	-1.00	平均対数確率が下回った場合に失敗とみなす閾値
+-nth, --no-speech-thold N	0.60	無音と判定する `<
+-nf, --no-fallback	false	フォールバック動作（温度上昇）を無効化
+
+4. 出力フォーマット
+オプション	デフォルト	説明
+-otxt, --output-txt	false	.txt ファイル出力
+-ovtt, --output-vtt	false	.vtt 字幕ファイル出力
+-osrt, --output-srt	false	.srt 字幕ファイル出力
+-olrc, --output-lrc	false	.lrc 歌詞ファイル出力
+-owts, --output-words	false	Karaoke 用タイムスタンプ付きスクリプト出力
+-ocsv, --output-csv	false	CSV ファイル出力
+-oj, --output-json	false	JSON ファイル出力
+-ojf, --output-json-full	false	詳細付き JSON 出力
+-of FNAME, --output-file FNAME	—	出力ファイル名（拡張子なし）指定
+
+5. 言語検出／翻訳
+オプション	デフォルト	説明
+-l LANG, --language LANG	en	音声の言語指定（auto で自動検出）
+-dl, --detect-language	false	言語自動検出のみ実行後、終了
+-tr, --translate	false	英語への翻訳モードで実行
+
+6. デバッグ／表示制御
+オプション	デフォルト	説明
+-debug, --debug-mode	false	デバッグ出力を有効化（メルスペクトログ生成など）
+-np, --no-prints	false	結果以外の標準出力を抑制
+-ps, --print-special	false	特殊トークンを表示
+-pc, --print-colors	false	ANSI カラー出力を有効化
+-pp, --print-progress	false	進捗表示を有効化
+-nt, --no-timestamps	false	タイムスタンプ表示を抑制
+--suppress-nst	false	non-speech トークンを抑制
+--suppress-regex REGEX	—	正規表現にマッチしたトークンを抑制
+--log-score	false	トークンごとの最良スコアをログ出力
+
+7. モデル／フォント指定
+オプション	デフォルト	説明
+-m FNAME, --model FNAME	models/ggml-base.en.bin	Whisper モデルファイルパス
+-f FNAME, --file FNAME	—	入力オーディオファイルパス
+-fp, --font-path PATH	/System/Library/Fonts/Supplemental/Courier New Bold.ttf	Karaoke 用フォント指定
+-ng, --no-gpu	false	GPU（Metal/OpenCL/CUDA）を無効化
+-fa, --flash-attn	false	FlashAttention を有効化
+-oved D, --ov-e-device DNAME	CPU	OpenVINO エンコードで使用するデバイス
+-dtw MODEL	—	トークンレベルタイムスタンプを計算
+
+8. 拡張機能
+オプション	デフォルト	説明
+-di, --diarize	false	音声のステレオチャネルごとの話者分離
+-tdrz, --tinydiarize	false	TDRZ モデルを用いた小規模話者分離
+--grammar GRAMMAR	—	GBNF 文法ファイルを用いたデコーディング制約
+--grammar-rule RULE	—	適用するトップレベル文法ルール名
+--grammar-penalty N	100.0	文法外トークンのロジットを低減させるスケーリング係数
