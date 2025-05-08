@@ -30,12 +30,14 @@ source whis/bin/activate
 
 ```
 pip install -r requirements.txt
+git clone https://github.com/ggml-org/whisper.cpp.git
+git clone https://github.com/reazon-research/ReazonSpeech
+pip install ReazonSpeech/pkg/espnet-asr
 ```
 
 4. ビルド等
 
 ```
-git clone https://github.com/ggml-org/whisper.cpp.git
 cd whisper.cpp
 sh ./models/download-ggml-model.sh large-v3 # ggmlバイナリが未取得の場合のみ
 ./models/generate-coreml-model.sh large-v3
